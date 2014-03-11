@@ -6,6 +6,14 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+
+
+  def current_user_admin?
+    current_user && current_user.admin?
+  end
+  helper_method :current_user_admin?
+  hide_action :current_user_admin?
+
   private
 
   def configure_permitted_parameters
