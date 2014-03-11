@@ -11,10 +11,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140311111234) do
+ActiveRecord::Schema.define(version: 20140311115604) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "airplanes", force: true do |t|
+    t.string   "name"
+    t.integer  "rows"
+    t.integer  "columns"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "flights", force: true do |t|
+    t.integer  "flight_no"
+    t.string   "origin"
+    t.string   "destination"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer  "airplane_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "flights", ["airplane_id"], name: "index_flights_on_airplane_id", using: :btree
+
+  create_table "reservations", force: true do |t|
+    t.integer  "flight_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "reservations", ["flight_id"], name: "index_reservations_on_flight_id", using: :btree
+  add_index "reservations", ["user_id"], name: "index_reservations_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
