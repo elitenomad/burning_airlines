@@ -5,4 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :name, presence: true
+
+  has_many :reservations, dependent: :destroy
+  has_many :flights, through: :reservations, source: :flight
 end
