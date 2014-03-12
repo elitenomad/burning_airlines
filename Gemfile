@@ -1,4 +1,6 @@
+
 source 'https://rubygems.org'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
@@ -45,6 +47,7 @@ end
 # gem 'debugger', group: [:development, :test]
 
 gem 'bootstrap-sass'
+# for deploying to heroku for bootstrap to work
 gem 'rails_12factor'
 gem 'devise'
 
