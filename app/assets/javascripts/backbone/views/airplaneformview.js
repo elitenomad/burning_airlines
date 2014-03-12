@@ -44,8 +44,7 @@ App.AirplaneFormView = Backbone.View.extend({
         var airplaneModel = new App.AirplaneModel();
         airplaneModel.save(airplaneFormDetails,{
             success: function(){
-               var airplaneRouter =  new App.AirplaneRouter();
-               airplaneRouter.navigate("",{trigger: true});
+                App.airplaneRouter.navigate("",{trigger: true});
             }
         });
         return false;

@@ -11,6 +11,10 @@ class AirplanesController < ApplicationController
   end
 
   def show
+    respond_to do |format|
+      format.html
+      format.json { render json: @airplane }
+    end
   end
 
   def new
@@ -26,7 +30,7 @@ class AirplanesController < ApplicationController
     respond_to do |format|
       if @airplane.save
         format.html { redirect_to @airplane, notice: 'Airplane was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @airplane }
+        format.json { render json: @airplane } #render action: 'show', status: :created, location: @airplane }
       else
         format.html { render action: 'new' }
         format.json { render json: @airplane.errors, status: :unprocessable_entity }
@@ -38,7 +42,7 @@ class AirplanesController < ApplicationController
     respond_to do |format|
       if @airplane.update(airplane_params)
         format.html { redirect_to @airplane, notice: 'Airplane was successfully updated.' }
-        format.json { head :no_content }
+        format.json { render json: @airplane }#head :no_content }
       else
         format.html { render action: 'edit' }
         format.json { render json: @airplane.errors, status: :unprocessable_entity }
