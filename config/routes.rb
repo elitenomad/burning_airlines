@@ -1,5 +1,5 @@
 BurningAirlines::Application.routes.draw do
-  root to: "static_pages#about"
+  root to: "airplanes#index"
 
   devise_for :users
 
