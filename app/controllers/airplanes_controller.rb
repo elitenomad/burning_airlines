@@ -54,6 +54,10 @@ class AirplanesController < ApplicationController
     end
   end
 
+  def airplane
+
+  end
+
   private
 
   def set_airplane
