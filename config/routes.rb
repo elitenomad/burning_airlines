@@ -9,8 +9,10 @@ BurningAirlines::Application.routes.draw do
     end
   end
 
-  resources :users, {shallow: true, only:[:index,:show]} do
-    resources :reservations
+  resources :users,only: [:index] do
+    resources :flights do
+      resources :reservations
+    end
   end
 
 end
