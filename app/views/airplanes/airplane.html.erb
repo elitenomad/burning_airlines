@@ -48,14 +48,15 @@
             </tr>
           </thead>
           <tbody>
-            <% @airplanes.each do |airplane| %>
+            <%% _.each(airplanes, function(airplane) { %>
+
               <tr>
-                <td><%= airplane.name %></td>
-                <td><%= airplane.rows %></td>
-                <td><%= airplane.columns %></td>
-                <td><a href="#/edit/<%= airplane.id %>" class="text-notice">Edit</a>/<a href="#/delete/<%= airplane.id %>" class="text-danger">Delete</a></td>
+                <td><%%= airplane.get('name') %></td>
+                <td><%%= airplane.get('rows') %></td>
+                <td><%%= airplane.get('columns') %></td>
+                <td><a href="#/edit/<%%= airplane.get('id') %>" class="text-notice">Edit</a>/<a href="#/delete/<%%= airplane.get('id') %>" class="text-danger">Delete</a></td>
               </tr>
-            <% end %>
+            <%% }); %>
           </tbody>
         </table>
       </div>
@@ -99,94 +100,30 @@
 
 <script type="text/javascript">
 
-  $(document).ready(function(){
-      $.fn.serializeObject = function()
-      {
-          var o = {};
-          var a = this.serializeArray();
-          $.each(a, function() {
-              if (o[this.name] !== undefined) {
-                  if (!o[this.name].push) {
-                      o[this.name] = [o[this.name]];
-                  }
-                  o[this.name].push(this.value || '');
-              } else {
-                  o[this.name] = this.value || '';
-              }
-          });
-          return o;
-      };
+    $(document).ready(function(){
+
+        // Views
+        var airplaneList = new App.AirplaneListView();
+        var airplaneForm = new App.AirplaneFormView();
+
+        // Router Initialize
+        var airplaneRouter = new App.AirplaneRouter();
+
+        // Router Home Navigation
+        airplaneRouter.on('route:home',function(){
+            airplaneList.render();
+        });
 
 
-      var AirplaneFormView = Backbone.View.extend({
-          el: '.page',
-          render: function(options){
-              var that = this;
-              if(options.id){
-                  console.log(options.id)
-                  var airplane = new App.AirplaneModel({id: options.id});
-                  airplane.fetch({
-                      success: function(airplane){
-                          var template = _.template($('#airplane-form-template').html(),{airplane:airplane});
-                          that.$el.html(template);
-                      }
-                  })
-              }else{
-                  var template = _.template($('#airplane-form-template').html(),{airplane:null});
-                  this.$el.html(template)
-              }
+        airplaneRouter.on('route:editairplane',function(id){
+            airplaneForm.render({id: id});
+        });
 
-          },
-          events: {
-              'submit .edit-airplane-form': 'saveAirplane'
-
-          },
-          saveAirplane: function(ev){
-              var airplaneFormDetails = $(ev.currentTarget).serializeObject();
-              var airplaneModel = new App.AirplaneModel();
-              airplaneModel.save(airplaneFormDetails,{
-                  success: function(airplaneModel){
-                     airplaneRouter.navigate("",{trigger: true});
-                  }
-              });
-              return false;
-          }
-      });
-
-      // Views
-      var airplaneList = new App.AirplaneListView();
-      var airplaneForm = new AirplaneFormView();
-
-      // Router Initialize
-      var airplaneRouter = new App.AirplaneRouter();
-
-      // Router Home Navigation
-      airplaneRouter.on('route:home',function(){
-          airplaneList.render();
-      });
-
-
-      airplaneRouter.on('route:editairplane',function(id){
-          airplaneForm.render({id: id});
-      });
-/*
-
- userRouter.on('route:deleteuser',function(id){
- userDelete.render({id:id});
- });
- */
-//      userRouter.on('route:deleteuser',function(id){
-//          userDelete.render({id:id});
-//      });
-
-
-
-
-      try {
-          Backbone.history.start();
-      } catch(err) {
-          Backbone.history.loadUrl();
-      }
-  });
+        try {
+            Backbone.history.start();
+        } catch(err) {
+            Backbone.history.loadUrl();
+        }
+    });
 
 </script>
