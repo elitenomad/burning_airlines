@@ -1,6 +1,7 @@
 /**
  * Created by pranavaswaroop on 12/03/2014.
  */
+
 App.AirplaneRouter = Backbone.Router.extend({
     routes: {
         "": 'home',
@@ -9,3 +10,4 @@ App.AirplaneRouter = Backbone.Router.extend({
         "delete/:id": 'deleteairplane'
     }
 });
+
