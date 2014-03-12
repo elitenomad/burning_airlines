@@ -103,20 +103,27 @@
     $(document).ready(function(){
 
         // Views
-        var airplaneList = new App.AirplaneListView();
-        var airplaneForm = new App.AirplaneFormView();
+        App.airplaneList = new App.AirplaneListView();
+        App.airplaneForm = new App.AirplaneFormView();
+        App.airplaneDelete = new App.AirplaneDeleteView();
+
 
         // Router Initialize
-        var airplaneRouter = new App.AirplaneRouter();
+         App.airplaneRouter = new App.AirplaneRouter();
 
         // Router Home Navigation
-        airplaneRouter.on('route:home',function(){
-            airplaneList.render();
+        App.airplaneRouter.on('route:home',function(){
+            App.airplaneList.render();
         });
 
+        //New and Create Airplane
+        App.airplaneRouter.on('route:editairplane',function(id){
+            App.airplaneForm.render({id: id});
+        });
 
-        airplaneRouter.on('route:editairplane',function(id){
-            airplaneForm.render({id: id});
+        // Delete Airplane
+        App.airplaneRouter.on('route:deleteairplane',function(id){
+            App.airplaneDelete.render({id:id});
         });
 
         try {
