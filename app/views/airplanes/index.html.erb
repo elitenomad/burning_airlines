@@ -45,7 +45,7 @@
               <tr>
                 <td><%= airplane.name %></td>
                 <td><%= airplane.rows %></td>
-                <td><%= airplane.cols %></td>
+                <td><%= airplane.columns %></td>
               </tr>
             <% end %>
           </tbody>
@@ -60,6 +60,7 @@
     App.airplanes = new App.Airplanes();
     App.airplanes.fetch();
 
+    // App.router = new App.Router();
     
   })
 </script>
