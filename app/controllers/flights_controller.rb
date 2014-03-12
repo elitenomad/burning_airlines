@@ -2,21 +2,25 @@ class FlightsController < ApplicationController
   before_action :set_flight, only: [:show, :edit, :update, :destroy]
 
   def index
-    @flights = Flight.all
+    @airplane = Airplane.find(params[:airplane_id])
+    @flights = @airplane.flights
   end
 
   def show
+    @flight = Flights.find_by_id(params[:id])
   end
 
   def new
-    @flight = Flight.new
+    @airplane = Airpline.find(params[:airplane_id])
+    @flight = @airplane.flights.new
   end
 
   def edit
   end
 
   def create
-    @flight = Flight.new(flight_params)
+    @airplane = Airplane.find(params[:airplane_id])
+    @flight = @airplane.flights.new(flight_params)
 
     respond_to do |format|
       if @flight.save
