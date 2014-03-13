@@ -67,6 +67,7 @@
                 <td><%%= airplane.get('columns') %></td>
                 <td><a href="#/edit/<%%= airplane.get('id') %>" class="text-notice">Edit</a>/<a href="#/delete/<%%= airplane.get('id') %>" class="text-danger">Delete</a></td>
               </tr>
+
             <%% }); %>
           </tbody>
         </table>
@@ -138,6 +139,14 @@
                     </form>
             </div>
         </div>
+    </script>
+
+    <script type="text/template" id="flight-show-template">
+    <div id="seats">
+      <ul class="row">
+      <li class="col"></li>
+      </ul>
+    </div>
     </script>
 
 <script type="text/javascript">
