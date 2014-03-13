@@ -4,31 +4,43 @@
   </div>
   <hr>
   <div class="row">
+
     <% if current_user.admin? %>
-        <div class="mini-nav">
-          <ul>
-            <li class="btn btn-default"><%= link_to 'airplanes' %></li>
-            <li class="btn btn-default"><%= link_to 'flights' %></li>
-            <li class="btn btn-default"><%= link_to 'reservations' %></li>
+        <div class="col-md-8 col-md-offset-2">
+          <ul class="nav nav-tabs nav-justified">
+            <li class="active">
+              <a href="#plane" data-toggle="tab">Planes</a>
+            </li>
+            <li>
+              <a id="gotoflights" href="#flight" data-toggle="tab">Flights</a>
+            </li>
+            <li>
+              <a href="#search" data-toggle="tab">Book a Flight</a>
+            </li>
           </ul>
-        </div>
-    <% end %>
+          <div class="tab-content">
+            <div id="plane" class="tab-pane active">
+              <div class="page">
 
-    <% if current_user && !current_user.admin %>
-        <div class="mini-nav">
-          <ul>
-            <li><%= link_to 'reservations' %></li>
-          </ul>
+              </div>
+            </div>
+            <div id="flight" class="tab-pane">
+              <div class="flights">
+
+              </div>
+            </div>
+            <div id="search" class="tab-pane">
+              <p>Flight Reservation</p>
+            </div>
+          </div>
+        </div>
+    <% else  %>
+        <div class="col-md-8 col-md-offset-2">
+          <p>Flight Reservation</p>
         </div>
     <% end %>
   </div>
-  <div class="row">
-    <div class="page">
 
-
-
-    </div>
-  </div>
 
 </div>
 
@@ -49,7 +61,6 @@
           </thead>
           <tbody>
             <%% _.each(airplanes, function(airplane) { %>
-
               <tr>
                 <td><%%= airplane.get('name') %></td>
                 <td><%%= airplane.get('rows') %></td>
@@ -63,7 +74,38 @@
     </div>
   </div>
 </script>
-
+<script type="text/template" id="flight-list-template">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-1">
+        <a href="#/new-flight" class="btn btn-default">Create Flight</a>
+        <hr>
+        <table class="table table-responsive table-striped">
+          <thead>
+            <tr>
+              <th>Flight</th>
+              <th>Origin</th>
+              <th>Destination</th>
+              <th>Airplane ID</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <%% _.each(flights, function(flight) { %>
+              <tr>
+                <td><%%= flight.get('flight_no') %></td>
+                <td><%%= flight.get('origin') %></td>
+                <td><%%= flight.get('destination') %></td>
+                <td><%%= flight.get('airplane_id') %></td>
+                <td><a href="#/edit/<%%= flight.get('id') %>" class="text-notice">Edit</a>/<a href="#/delete/<%%= flight.get('id') %>" class="text-danger">Delete</a></td>
+              </tr>
+            <%% }); %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</script>
 <script type="text/template" id="airplane-form-template">
         <div class="container">
             <div class="row">
@@ -102,11 +144,13 @@
 
     $(document).ready(function(){
 
-        // Views
+        // Airplane Views
         App.airplaneList = new App.AirplaneListView();
         App.airplaneForm = new App.AirplaneFormView();
         App.airplaneDelete = new App.AirplaneDeleteView();
 
+        // Flight Views
+        App.flightList = new App.FlightListView();
 
         // Router Initialize
          App.airplaneRouter = new App.AirplaneRouter();
@@ -125,6 +169,21 @@
         App.airplaneRouter.on('route:deleteairplane',function(id){
             App.airplaneDelete.render({id:id});
         });
+
+        // Route Flights home
+        /*  App.airplaneRouter.on('route:flightshome',function(){
+            App.airplaneList.render();
+            console.log("iam in the flight router page")
+        });
+        */
+        $("#gotoflights").on("click",function(){
+            console.log('I am clicking the a href');
+           /*
+                App.airplaneRouter.navigate("",{trigger: true});
+            */
+            App.flightList.render();
+        });
+
 
         try {
             Backbone.history.start();

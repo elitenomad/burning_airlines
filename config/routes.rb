@@ -4,10 +4,9 @@ BurningAirlines::Application.routes.draw do
 
   devise_for :users
 
-  resources :airplanes,{shallow: true} do
-    resources :flights,{shallow: true} do
-        resources :reservations
-    end
+  resources :airplanes
+  resources :flights,{shallow: true} do
+    resources :reservations
   end
 
   resources :users,only: [:index] do
