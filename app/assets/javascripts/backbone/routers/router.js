@@ -7,7 +7,8 @@ App.AirplaneRouter = Backbone.Router.extend({
         "": 'home',
         "new": 'editairplane',
         "edit/:id": 'editairplane',
-        "delete/:id": 'deleteairplane'
+        "delete/:id": 'deleteairplane',
+        "flight": "flightshome"
     }
 });
 

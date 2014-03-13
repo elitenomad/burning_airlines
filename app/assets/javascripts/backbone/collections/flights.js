@@ -1,6 +1,8 @@
-App.Flights = Backbone.Collection.extend({
-	
-	model: App.Flight,
 
-	url: 'airplanes/params[:airplane_id]/flights'
+/**
+ * Created by pranavaswaroop on 14/03/2014.
+ */
+
+App.Flights = Backbone.Collection.extend({
+    url: '/flights'
 });

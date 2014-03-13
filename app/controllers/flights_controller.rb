@@ -1,9 +1,10 @@
 class FlightsController < ApplicationController
   before_action :set_flight, only: [:show, :edit, :update, :destroy]
 
+  respond_to :html, :json
   def index
-    @airplane = Airplane.find(params[:airplane_id])
-    @flights = @airplane.flights
+    @flights = Flight.all
+    respond_with @flights
   end
 
   def show
