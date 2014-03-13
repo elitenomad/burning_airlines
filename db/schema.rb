@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140311125807) do
+ActiveRecord::Schema.define(version: 20140313221546) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,16 @@ ActiveRecord::Schema.define(version: 20140311125807) do
 
   add_index "reservations", ["flight_id"], name: "index_reservations_on_flight_id", using: :btree
   add_index "reservations", ["user_id"], name: "index_reservations_on_user_id", using: :btree
+
+  create_table "seats", force: true do |t|
+    t.string   "seatname"
+    t.boolean  "status"
+    t.integer  "flight_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "seats", ["flight_id"], name: "index_seats_on_flight_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",    null: false

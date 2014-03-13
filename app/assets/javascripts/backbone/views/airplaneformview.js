@@ -31,7 +31,7 @@ App.AirplaneFormView = Backbone.View.extend({
             });
         }else{
             var template = _.template($('#airplane-form-template').html(),{airplane:null});
-            this.$el.html(template)
+            this.$el.html(template);
         }
 
     },
