@@ -22,8 +22,6 @@ App.FlightShowView = Backbone.View.extend ({
 					// var rows = 
 					// var cols = 
 
-
-					
 					// for collection use $.each
 					//should create row A - draw each seat, showing taken or available.
 					// create row B

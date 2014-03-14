@@ -21,7 +21,7 @@ class FlightsController < ApplicationController
 
   def create
     @airplane = Airplane.find(params[:airplane_id])
-    @flight = @airplane.flights.new(flight_params)    
+    @flight = @airplane.flights.new(flight_params)   
 
     respond_to do |format|
       if @flight.save
