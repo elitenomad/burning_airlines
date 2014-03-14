@@ -78,27 +78,29 @@
 <script type="text/template" id="flight-list-template">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-6 col-md-offset-1">
+      <div class="col-md-8 col-md-offset-2">
         <a href="#/new-flight" class="btn btn-default">Create Flight</a>
         <hr>
         <table class="table table-responsive table-striped">
           <thead>
             <tr>
+              <th>Date</th>
               <th>Flight</th>
-              <th>Origin</th>
-              <th>Destination</th>
+              <th>From > To</th>
               <th>Airplane ID</th>
+              <th>Seats</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
             <%% _.each(flights, function(flight) { %>
               <tr>
+                <td><%%= flight.get('start_time') %></td>
                 <td><%%= flight.get('flight_no') %></td>
-                <td><%%= flight.get('origin') %></td>
-                <td><%%= flight.get('destination') %></td>
+                <td><%%= flight.get('origin') %> > <%%= flight.get('destination') %></td>
                 <td><%%= flight.get('airplane_id') %></td>
-                <td><a href="#/edit/<%%= flight.get('id') %>" class="text-notice">Edit</a>/<a href="#/delete/<%%= flight.get('id') %>" class="text-danger">Delete</a></td>
+                <td></td>
+                <td><a href="#/edit-flight/<%%= flight.get('id') %>" class="text-notice">Edit</a>/<a href="#/delete-flight/<%%= flight.get('id') %>" class="text-danger">Delete</a></td>
               </tr>
             <%% }); %>
           </tbody>
@@ -107,6 +109,48 @@
     </div>
   </div>
 </script>
+
+<script type="text/template" id="flight-form-template">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-2">
+                    <%% if(flight) { %>
+                        <h4> Edit Flight </h4>
+                    <%% }else{ %>
+                        <h4> New Flight </h4>
+                    <%% } %>
+                    <hr/>
+                    <form class="edit-flight-form">
+                        <div class="form-group">
+                            <input type="number" name="flight_no" id="flight_no" value='<%%= flight?flight.get("flight_no"):"" %>' class="form-control" placeholder="Flight Number" autofocus/>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="origin" id="origin" value='<%%= flight?flight.get("origin"):"" %>' class="form-control" placeholder="Origin"/>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="destination" id="destination" value='<%%= flight?flight.get("destination"):"" %>' class="form-control" placeholder="Destination"/>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="datetime" name="start_time" id="start_time" value='<%%= flight?flight.get("start_time"):"" %>' class="form-control" placeholder="Start_time"/>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" name="airplane_id" id="airplane_id" value='<%%= flight?flight.get("airplane_id"):"" %>' class="form-control" placeholder="Airplane ID"/>
+                        </div>
+
+                            <%% if(flight) { %>
+                               <input type="hidden" name="id" value='<%%= flight.get("id") %>' />
+                               <button type="submit" class="btn btn-primary pull-right">Update Flight</button>
+                            <%% }else{ %>
+                                <button type="submit" class="btn btn-primary pull-right">Create Flight</button>
+                            <%% } %>
+
+                        </div>
+                    </form>
+            </div>
+        </div>
+    </script>
 <script type="text/template" id="airplane-form-template">
         <div class="container">
             <div class="row">
@@ -160,6 +204,8 @@
 
         // Flight Views
         App.flightList = new App.FlightListView();
+        App.flightForm = new App.FlightFormView();
+        App.flightDelete = new App.FlightDeleteView();
 
         // Router Initialize
          App.airplaneRouter = new App.AirplaneRouter();
@@ -180,22 +226,30 @@
         });
 
         // Route Flights home
-        /*  App.airplaneRouter.on('route:flightshome',function(){
+        App.airplaneRouter.on('route:flightshome',function(){
             App.airplaneList.render();
-            console.log("iam in the flight router page")
+           // console.log("iam in the flight router page")
         });
-        */
+
         $("#gotoflights").on("click",function(){
-            console.log('I am clicking the a href');
            /*
                 App.airplaneRouter.navigate("",{trigger: true});
             */
             App.flightList.render();
         });
 
+        App.airplaneRouter.on('route:editflight',function(id){
+            App.flightForm.render({id: id});
+        });
+
+
+        App.airplaneRouter.on('route:deleteflight',function(id){
+            App.flightDelete.render({id: id});
+        });
+
 
         try {
-            Backbone.history.start();
+            Backbone.history.start(); //{pushState: true, root: "/airplane"}
         } catch(err) {
             Backbone.history.loadUrl();
         }
