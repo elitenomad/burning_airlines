@@ -78,26 +78,28 @@
 <script type="text/template" id="flight-list-template">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-6 col-md-offset-1">
+      <div class="col-md-8 col-md-offset-2">
         <a href="#/new-flight" class="btn btn-default">Create Flight</a>
         <hr>
         <table class="table table-responsive table-striped">
           <thead>
             <tr>
+              <th>Date</th>
               <th>Flight</th>
-              <th>Origin</th>
-              <th>Destination</th>
+              <th>From > To</th>
               <th>Airplane ID</th>
+              <th>Seats</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
             <%% _.each(flights, function(flight) { %>
               <tr>
+                <td><%%= flight.get('start_time') %></td>
                 <td><%%= flight.get('flight_no') %></td>
-                <td><%%= flight.get('origin') %></td>
-                <td><%%= flight.get('destination') %></td>
+                <td><%%= flight.get('origin') %> > <%%= flight.get('destination') %></td>
                 <td><%%= flight.get('airplane_id') %></td>
+                <td></td>
                 <td><a href="#/edit-flight/<%%= flight.get('id') %>" class="text-notice">Edit</a>/<a href="#/delete-flight/<%%= flight.get('id') %>" class="text-danger">Delete</a></td>
               </tr>
             <%% }); %>
