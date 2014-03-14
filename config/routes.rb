@@ -1,5 +1,5 @@
 BurningAirlines::Application.routes.draw do
-  root to: "airplanes#index"
+  root to: "airplanes#airplane"
   get '/airplane', to: 'airplanes#airplane'
 
   devise_for :users

@@ -1,3 +1,27 @@
 // Place all the styles related to the flights controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.seatrow li {
+  display:inline-block;
+}
+
+.seatcol {
+  cursor: pointer;
+  width: 33px;
+  height: 33px;
+  padding: 2px;
+  background: image_path('images/available_seat.gif') no-repeat;
+}
+
+.seatcol.available {
+  background: image_path('images/available_seat.gif') no-repeat;
+}
+
+.seatcol.selected {
+  background: image_path('images/selected_seat.gif') no-repeat;
+}
+
+.seatcol:hover {
+  background-color: yellow;
+}
