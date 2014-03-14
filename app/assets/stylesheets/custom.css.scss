@@ -1,10 +1,107 @@
 @import "bootstrap";
 
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.container {
+  padding-bottom: 55px;
+  margin-top: 80px;
+}
+
+.row h2 {
+  padding-top: 20px;
+  color: #ef4036;
+  text-align: center;
+}
+
+p.alert {
+  margin-top: 30px;
+}
+
+.page > .container-fluid > .row,
+#flight > .flights,
+#search {
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding-top: 25px;
+  min-height: 400px;
+}
+
+/* Header */
+
+.navbar {
+  background-image: image-url("stardust.png") !important;
+  background-repeat: repeat;
+  -webkit-box-shadow: 0 8px 5px -5px #CCC;
+  -mox-box-shadow: 0 8px 5px -5px #CCC;
+  box-shadow: 0 8px 5px -5px #CCC;
+  height: 95px;
+}
+
+.navbar-fixed-top ul li #sign-up {
+  font-size: 20px;
+}
+ul.nav.navbar-nav {
+  color: #fff;
+  padding-top: 10px;
+  font-size: 20px;
+}
+ul.nav.navbar-nav a {
+  color: #fff;
+}
+ul.nav.navbar-nav a:visited {
+  color: #fff;
+}
+ul.nav.navbar-nav a:hover {
+  color: #ef4036;
+}
+ul.nav.navbar-nav a:active {
+  color: #ef4036;
+}
+
+.navbar-nav > li > .dropdown-menu {
+  background-color: #e7e7e7;
+}
+.navbar-nav > li > .dropdown-menu a {
+  color: #333333;
+}
+.navbar-nav > li > .dropdown-menu a:visited {
+  color: #333333;
+}
+.navbar-nav > li > .dropdown-menu a:hover {
+  color: #ef4036;
+  background-color: transparent !important;
+}
+.navbar-nav > li > .dropdown-menu a:active {
+  color: #ef4036;
+}
+
+.logo {
+  background-image: url(/assets/ba-logo.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 75px;
+  width: 320px;
+
+}
+.logo span {
+  visibility: hidden;
+}
+
 
 /*
 Footer
 */
+nav {
+  padding: 10px 50px;
+}
 footer {
+  background-image: image-url("stardust.png") !important;
+  background-repeat: repeat;
   margin: 0 auto;
   padding: 5px;
   border-top: 1px solid #eaeaea;
