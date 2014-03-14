@@ -1,7 +1,7 @@
-	
+
 
 App.FlightShowView = Backbone.View.extend ({
-	el: '.page',
+	el: '.flights',
 
     render: function(options){
     // get the clicked on flight
@@ -12,43 +12,45 @@ App.FlightShowView = Backbone.View.extend ({
 
             
             success: function(){
-            	console.log(flight);
-     //            var template = _.template($("#flight-show-template").html(),{airplanes:airplanes.models});
-     //            that.$el.html(template);
+    //         	console.log(flight);
+    //             var template = _.template($("#flight-show-template").html());
+    //             // that.$el.html(template);
             
-					// var row_letters = ['A', 'B', 'C', 'D'];
-					// // how do i put this into template?
-					// // how to draw along one part of the template? (ul) before moving to the next ul?
-					// var row_template = '<ul class="row"></ul>';
-					// var col_template = '<li class="col"></li>';
+
+
+				// 	var row_letters = ['A', 'B', 'C', 'D'];
+				// 	// how do i put this into template?
+				// 	// how to draw along one part of the template? (ul) before moving to the next ul?
+				// 	var row_template = '<ul class="seatrow"></ul>';
+				// 	var col_template = '<li class="seatcol"></li>';
 		
-					// // var rows = 
-					// // var cols = 
+				// 	var rows = 2
+				// 	var cols = 2
 
-					// // for collection use $.each
-					// //should create row A - draw each seat, showing taken or available.
-					// // create row B
+				// 	// for collection use $.each
+				// 	//should create row A - draw each seat, showing taken or available.
+				// 	// create row B
 
-					// // generate rows
-					// for(var i=0; i < settings.rows; i++){
-					// 	$('#seats').append(row_letters[i] + row_template);
-					// }
-					// // generate columns
-					// for (var c=0; c < settings.cols; c++){
-					// 	$('.row').append(col_template + (c+1));
-					// }
+				// 	// generate rows
+				// 	for(var i=0; i < rows; i++){
+				// 		$('#seats').append(row_letters[i] + row_template);
+				// 	}
+				// 	// generate columns
+				// 	for (var c=0; c < cols; c++){
+				// 		$('.seatrow').append(col_template + (c+1));
+				// 	}
 
-					// // click event for selecting a seat
-					// $('.col').on('click', selectSeat);
+				// 	// click event for selecting a seat
+				// 	$('.seatcol').on('click', selectSeat);
 
-					// function selectSeat(){
+				// 	function selectSeat(){
 
-					// 	$(this).toggleClass('selected');
-					// 	console.log('clicked');
-					// }
+				// 		$(this).toggleClass('selected');
+				// 		console.log('clicked');
+				// 	}
 
 				
-
+				// that.$el.html(template);
             }
         });
 
