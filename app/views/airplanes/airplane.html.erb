@@ -95,6 +95,7 @@
           <tbody>
             <%% _.each(flights, function(flight) { %>
               <tr>
+                <td><a href="#/show-flight/<%%= flight.get('id') %>" class="text-notice">Show</a></td>
                 <td><%%= flight.get('start_time') %></td>
                 <td><%%= flight.get('flight_no') %></td>
                 <td><%%= flight.get('origin') %> > <%%= flight.get('destination') %></td>
@@ -206,6 +207,7 @@
         App.flightList = new App.FlightListView();
         App.flightForm = new App.FlightFormView();
         App.flightDelete = new App.FlightDeleteView();
+        App.flightShow = new App.FlightShowView();
 
         // Router Initialize
          App.airplaneRouter = new App.AirplaneRouter();
@@ -240,6 +242,10 @@
 
         App.airplaneRouter.on('route:editflight',function(id){
             App.flightForm.render({id: id});
+        });
+
+        App.airplaneRouter.on('route:showflight', function(id){
+          App.flightShow.render({id: id});
         });
 
 
