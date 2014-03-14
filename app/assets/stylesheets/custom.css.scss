@@ -11,6 +11,26 @@ html, body {
   margin-top: 80px;
 }
 
+.row h2 {
+  padding-top: 20px;
+  color: #ef4036;
+  text-align: center;
+}
+
+p.alert {
+  margin-top: 30px;
+}
+
+.page > .container-fluid > .row,
+#flight > .flights,
+#search {
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding-top: 25px;
+  min-height: 400px;
+}
+
 /* Header */
 
 .navbar {
@@ -37,10 +57,10 @@ ul.nav.navbar-nav a:visited {
   color: #fff;
 }
 ul.nav.navbar-nav a:hover {
-  color: #f05a28;
+  color: #ef4036;
 }
 ul.nav.navbar-nav a:active {
-  color: #f05a28;
+  color: #ef4036;
 }
 
 .navbar-nav > li > .dropdown-menu {
@@ -53,11 +73,11 @@ ul.nav.navbar-nav a:active {
   color: #333333;
 }
 .navbar-nav > li > .dropdown-menu a:hover {
-  color: #f05a28;
+  color: #ef4036;
   background-color: transparent !important;
 }
 .navbar-nav > li > .dropdown-menu a:active {
-  color: #f05a28;
+  color: #ef4036;
 }
 
 .logo {
