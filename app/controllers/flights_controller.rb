@@ -8,7 +8,8 @@ class FlightsController < ApplicationController
   end
 
   def show
-    @flight = Flights.find_by_id(params[:id])
+    @flight = Flight.find(params[:id])
+    respond_with @flight
   end
 
   def new
@@ -26,7 +27,7 @@ class FlightsController < ApplicationController
     respond_to do |format|
       if @flight.save
         format.html { redirect_to @flight, notice: 'Flight was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @flight }
+        format.json { render json: @flight } #render action: 'show', status: :created, location: @flight }
       else
         format.html { render action: 'new' }
         format.json { render json: @flight.errors, status: :unprocessable_entity }
@@ -56,11 +57,11 @@ class FlightsController < ApplicationController
 
   private
 
-  def set_airplane
+  def set_flight
     @flight = Flight.find(params[:id])
   end
 
   def flight_params
-    params.require(:flight).permit(:flight_no, :origin, :destination,:start_time,:end_time)
+    params.require(:flight).permit(:flight_no, :origin, :destination,:start_time,:end_time,:id,:airplane_id)
   end
 end

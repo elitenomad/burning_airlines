@@ -5,6 +5,7 @@ BurningAirlines::Application.routes.draw do
   devise_for :users
 
   resources :airplanes
+
   resources :flights,{shallow: true} do
     resources :reservations
   end
