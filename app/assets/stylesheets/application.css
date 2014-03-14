@@ -11,3 +11,8 @@
  *= require_self
  *= require_tree .
  */
+
+
+.col {
+	background: image_url('available_seat.gif');
+}
