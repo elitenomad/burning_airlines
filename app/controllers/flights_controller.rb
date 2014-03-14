@@ -10,7 +10,7 @@ class FlightsController < ApplicationController
   def show
     @flight = Flight.find(params[:id])
     @seats = @flight.seats
-    respond_with(@flight, include: :seats)
+    respond_with(@flight, include: [:seats, :airplane])
   end
 
   def new

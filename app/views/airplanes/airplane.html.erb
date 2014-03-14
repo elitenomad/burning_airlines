@@ -186,13 +186,34 @@
         </div>
     </script>
 
-    <script type="text/template" id="flight-show-template">
-      // <div id="seats">
-      //   <ul class="row">
-      //     <li class="col"></li>
-      //   </ul>
-      // </div>
-    </script>
+<script type="text/template" id="flight-show-template">
+<div class="container">
+    <div class="row">
+    <div class="col-md-4 col-md-offset-2">
+      <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Seat</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+          <%% _.each(flight.get('seats'), function(seat) { %>
+            <tr>
+                <td><%%= seat.seatname %> </td>
+                <td><%%= seat.status %> </td>
+                <td></td>
+            </tr>
+          <%% }); %>
+        </tbody>
+      </table>
+    </div>
+    </div>
+  </div>
+
+
+</script>
 
 <script type="text/javascript">
 
