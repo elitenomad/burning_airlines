@@ -284,7 +284,7 @@
             <tr>
                 <td><%%= seat.seatname %> </td>
                 <td><%%= seat.status %> </td>
-                <td></td>
+                <td><a href="#/reserve-flight/<%%= flight.id %>/users/<%= current_user.id %>/seats/<%%= seat.id %>" id="reserveseat" class="text-notice">Reserve</a></td>
             </tr>
           <%% }); %>
         </tbody>
@@ -312,6 +312,7 @@
         App.flightShow = new App.FlightShowView();
         App.flightSearch = new App.FlightSearchView();
         App.flightBook = new App.FlightBookView();
+        App.flightReserve = new App.FlightResrveSeatView();
 
         // Router Initialize
          App.airplaneRouter = new App.AirplaneRouter();
@@ -358,6 +359,14 @@
 
         App.airplaneRouter.on('route:bookflight', function(id){
             App.flightBook.render({id: id});
+        });
+
+        App.airplaneRouter.on('route:reserveflight', function(id,user_id,seat_id){
+           App.flightReserve.reserveSeatOnFlight({
+                                   user_id: user_id,
+                                   seat_id: seat_id,
+                                   flight_id:id
+                               });
         });
 
         App.airplaneRouter.on('route:deleteflight',function(id){

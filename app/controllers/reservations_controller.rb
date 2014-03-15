@@ -1,6 +1,6 @@
 class ReservationsController < ApplicationController
   before_action :set_reservation, only: [:show, :edit, :update, :destroy]
-
+  respond_to :html,:json
   def index
     @reservations = Reservation.all
   end
@@ -14,6 +14,20 @@ class ReservationsController < ApplicationController
   end
 
   def edit
+  end
+
+  def reserve
+    @user = User.find(params[:user_id])
+    @flight = Flight.find(params[:flight_id])
+
+    @reservation = @user.reservations.new(flight: @flight)
+
+    # Flip the flight seat status in flight seats table to true
+    @seat = @flight.seats.find(params[:seat_id])
+    @seat.update(status:true)
+
+
+    respond_with(@flight, include: [:seats, :airplane])
   end
 
   def create

@@ -11,6 +11,7 @@ BurningAirlines::Application.routes.draw do
   end
 
   get '/search', to: 'flights#search'
+  post '/reserve/:flight_id/users/:user_id/seats/:seat_id', to: 'reservations#reserve'
 
   resources :users,only: [:index] do
     resources :flights do
