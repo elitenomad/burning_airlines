@@ -15,7 +15,7 @@
               <a id="gotoflights" href="#flight" data-toggle="tab">Flights</a>
             </li>
             <li>
-              <a href="#search" data-toggle="tab">Book a Flight</a>
+              <a id="searchflights" href="#search" data-toggle="tab">Book a Flight</a>
             </li>
           </ul>
           <div class="tab-content">
@@ -30,7 +30,9 @@
               </div>
             </div>
             <div id="search" class="tab-pane">
-              <p>Flight Reservation</p>
+              <div class="srchflights">
+
+              </div>
             </div>
           </div>
         </div>
@@ -110,7 +112,6 @@
     </div>
   </div>
 </script>
-
 <script type="text/template" id="flight-form-template">
         <div class="container">
             <div class="row">
@@ -152,6 +153,58 @@
             </div>
         </div>
     </script>
+<script type="text/template" id="flight-search-template">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-2">
+                <h4>Search Flight</h4>
+                <hr/>
+                <form class="search-flight-form">
+                    <div class="form-group">
+                        <input type="text" name="origin" id="origin" class="form-control" placeholder="Origin" required/>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="destination" id="destination"  class="form-control" placeholder="Destination" required/>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary pull-right">Search Flight</button>
+                    </div>
+                </form>
+        </div>
+    </div>
+</script>
+<script type="text/template" id="flight-search-list-template">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <hr>
+        <table class="table table-responsive table-striped">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Flight</th>
+              <th>From > To</th>
+              <th>Airplane ID</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <%% _.each(flights, function(flight) { %>
+              <tr>
+                <td><a href="#/show-flight/<%%= flight.id %>" class="text-notice">Show</a></td>
+                <td><%%= flight.start_time %></td>
+                <td><%%= flight.flight_no %></td>
+                <td><%%= flight.origin %> > <%%= flight.destination %></td>
+                <td><%%= flight.airplane_id %></td>
+                <td></td>
+              </tr>
+            <%% }); %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</script>
 <script type="text/template" id="airplane-form-template">
         <div class="container">
             <div class="row">
@@ -229,6 +282,7 @@
         App.flightForm = new App.FlightFormView();
         App.flightDelete = new App.FlightDeleteView();
         App.flightShow = new App.FlightShowView();
+        App.flightSearch = new App.FlightSearchView();
 
         // Router Initialize
          App.airplaneRouter = new App.AirplaneRouter();
@@ -259,6 +313,10 @@
                 App.airplaneRouter.navigate("",{trigger: true});
             */
             App.flightList.render();
+        });
+
+        $("#searchflights").on('click',function(){
+            App.flightSearch.render();
         });
 
         App.airplaneRouter.on('route:editflight',function(id){
