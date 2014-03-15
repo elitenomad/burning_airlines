@@ -10,6 +10,8 @@ BurningAirlines::Application.routes.draw do
     resources :reservations
   end
 
+  get '/search', to: 'flights#search'
+
   resources :users,only: [:index] do
     resources :flights do
       resources :reservations

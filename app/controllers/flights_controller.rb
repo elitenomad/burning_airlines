@@ -56,6 +56,12 @@ class FlightsController < ApplicationController
     end
   end
 
+
+  def search
+    @flights = Flight.where("origin=? and destination=?",params[:origin],params[:destination])
+    respond_with @flights
+  end
+
   private
 
   def set_flight
