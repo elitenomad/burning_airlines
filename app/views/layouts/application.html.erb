@@ -8,10 +8,10 @@
 </head>
 <body>
 <div class="container">
-
   <%= render 'layouts/header' %>
+</div>
 
-  <div class="row">
+  <div class="notification">
     <% if notice %>
         <p class="alert alert-success"><%= notice %></p>
     <% end %>
@@ -20,14 +20,12 @@
     <% end %>
   </div>
 
-  <div class="row">
+  <div class="container middle">
     <%= yield %>
   </div>
 
 
-  <%= render 'layouts/footer' %>
-</div>
-
+<%= render 'layouts/footer' %>
 
 </body>
 </html>
