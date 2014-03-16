@@ -51,7 +51,7 @@
       <div class="col-md-6 col-md-offset-1">
         <a href="#/new" class="btn btn-default">Create Plane</a>
         <hr>
-        <table class="table table-responsive table-striped">
+        <table class="table table-responsive table-striped table-bordered table-hover">
           <thead>
             <tr>
               <th>Name</th>
@@ -82,7 +82,7 @@
       <div class="col-md-8 col-md-offset-2">
         <a href="#/new-flight" class="btn btn-default">Create Flight</a>
         <hr>
-        <table class="table table-responsive table-striped">
+        <table class="table table-responsive table-striped table-bordered table-hover">
           <thead>
             <tr>
               <th>Date</th>
@@ -96,13 +96,12 @@
           <tbody>
             <%% _.each(flights, function(flight) { %>
               <tr>
-                <td><a href="#/show-flight/<%%= flight.get('id') %>" class="text-notice">Show</a></td>
                 <td><%%= flight.get('start_time') %></td>
                 <td><%%= flight.get('flight_no') %></td>
                 <td><%%= flight.get('origin') %> > <%%= flight.get('destination') %></td>
                 <td><%%= flight.get('airplane_id') %></td>
                 <td></td>
-                <td><a href="#/edit-flight/<%%= flight.get('id') %>" class="text-notice">Edit</a>/<a href="#/delete-flight/<%%= flight.get('id') %>" class="text-danger">Delete</a></td>
+                <td><a href="#/show-flight/<%%= flight.get('id') %>" class="text-notice">Show</a>/<a href="#/edit-flight/<%%= flight.get('id') %>" class="text-notice">Edit</a>/<a href="#/delete-flight/<%%= flight.get('id') %>" class="text-danger">Delete</a></td>
               </tr>
             <%% }); %>
           </tbody>
@@ -177,7 +176,7 @@
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
         <hr>
-        <table class="table table-responsive table-striped">
+        <table class="table table-responsive table-striped table-bordered table-hover">
           <thead>
             <tr>
               <th>Date</th>
@@ -242,7 +241,7 @@
 <div class="container">
     <div class="row">
     <div class="col-md-4 col-md-offset-2">
-      <table class="table table-bordered table-striped">
+      <table class="table table-responsive table-striped table-bordered table-hover">
         <thead>
             <tr>
                 <th>Seat</th>
@@ -270,7 +269,7 @@
 <div class="container">
     <div class="row">
     <div class="col-md-4 col-md-offset-2">
-      <table class="table table-bordered table-striped">
+      <table class="table table-responsive table-striped table-bordered table-hover">
         <thead>
             <tr>
                 <th>Seat</th>
