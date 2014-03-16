@@ -1,13 +1,12 @@
-<div class="container-fluid">
+<div class="container dashboard">
   <div class="row">
-    <h2>Airline Dashboard</h2>
+    <h2 class="dash">Airline Dashboard</h2>
   </div>
-  <hr>
   <div class="row">
 
     <% if current_user.admin? %>
         <div class="col-md-8 col-md-offset-2">
-          <ul class="nav nav-tabs nav-justified">
+          <ul class="nav nav-pills nav-justified">
             <li class="active">
               <a href="#plane" data-toggle="tab">Planes</a>
             </li>
@@ -47,7 +46,7 @@
 </div>
 
 <script type="text/template" id="airplane-list-template">
-  <div class="container-fluid">
+  <div class="container">
     <div class="row">
       <div class="col-md-6 col-md-offset-1">
         <a href="#/new" class="btn btn-default">Create Plane</a>
@@ -143,9 +142,9 @@
 
                             <%% if(flight) { %>
                                <input type="hidden" name="id" value='<%%= flight.get("id") %>' />
-                               <button type="submit" class="btn btn-primary pull-right">Update Flight</button>
+                               <button type="submit" class="btn btn-danger pull-right">Update Flight</button>
                             <%% }else{ %>
-                                <button type="submit" class="btn btn-primary pull-right">Create Flight</button>
+                                <button type="submit" class="btn btn-danger pull-right">Create Flight</button>
                             <%% } %>
 
                         </div>
@@ -167,14 +166,14 @@
                         <input type="text" name="destination" id="destination"  class="form-control" placeholder="Destination" required/>
                     </div>
 
-                    <button type="submit" class="btn btn-primary pull-right">Search Flight</button>
+                    <button type="submit" class="btn btn-danger pull-right">Search Flight</button>
                     </div>
                 </form>
         </div>
     </div>
 </script>
 <script type="text/template" id="flight-search-list-template">
-  <div class="container-fluid">
+  <div class="container">
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
         <hr>
@@ -228,9 +227,9 @@
 
                             <%% if(airplane) { %>
                                <input type="hidden" name="id" value='<%%= airplane.get("id") %>' />
-                               <button type="submit" class="btn btn-primary pull-right">Update Airplane</button>
+                               <button type="submit" class="btn btn-danger pull-right">Update Airplane</button>
                             <%% }else{ %>
-                                <button type="submit" class="btn btn-primary pull-right">Create Airplane</button>
+                                <button type="submit" class="btn btn-danger pull-right">Create Airplane</button>
                             <%% } %>
 
                         </div>

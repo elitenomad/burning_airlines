@@ -1,3 +1,46 @@
 // Place all the styles related to the airplanes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.dash {
+  font-family: 'Questrial', sans-serif;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.container .dashboard {
+  margin-top: -25px;
+}
+
+.container-fluid {
+  padding-bottom: 50px;
+}
+
+.container .dashboard > .col-md-6 .col-md-offset-1 {
+  border-left: 1px solid red;
+}
+
+.nav-pills > li > a, {
+  color: #ef4036 !important;
+}
+.nav-pills > li > a:visited {
+  color: #ef4036 !important;
+}
+.nav-pills > li > a:hover {
+  color: #FFF !important;
+  background-color: #ef4036 !important;
+}
+
+
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus {
+  background-color: #ef4036 !important;
+  color: #FFF !important;
+}
+
+.nav-justified, 
+.nav-tabs.nav-justified {
+  width: 100%;
+  margin-bottom: 25px !important;
+}
